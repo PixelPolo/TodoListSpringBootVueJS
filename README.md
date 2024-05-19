@@ -1,6 +1,6 @@
 # University of Fribourg Software Engineering I
 
-RESTFul API for a TodoList Application.
+RESTFul API for a Todo list web application.
 
 Backend : Spring Boot
 
