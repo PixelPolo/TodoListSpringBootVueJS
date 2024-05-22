@@ -24,7 +24,7 @@
                 v-model.number="todo.order"
                 label="Order"
                 type="number"
-                :rules="numberRules"
+                min="1"
               ></v-text-field>
             </v-col>
           </v-row>
@@ -112,13 +112,15 @@ const modifyTodo = async () => {
 
 // Method to change the order
 const changeOrder = async (newOrder) => {
-  const updatedTodo = {
-    title: props.todo.title,
-    completed: props.todo.completed,
-    order: newOrder,
-  };
-  await service.todos.update(props.todo.id, updatedTodo);
-  emits("todo-updated", props.todo.id);
+  if (newOrder >= 0) {
+    const updatedTodo = {
+      title: props.todo.title,
+      completed: props.todo.completed,
+      order: newOrder,
+    };
+    await service.todos.update(props.todo.id, updatedTodo);
+    emits("todo-updated", props.todo.id);
+  }
 };
 
 // Watcher the order and call changeOrder if it changes
